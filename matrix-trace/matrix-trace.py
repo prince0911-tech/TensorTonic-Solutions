@@ -13,4 +13,5 @@ def matrix_trace(A):
             if i==j:
                 trace=trace+A[i,j]
     return trace
+    #return A.diagonal().sum()
     pass
