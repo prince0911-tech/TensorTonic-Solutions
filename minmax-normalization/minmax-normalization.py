@@ -7,9 +7,9 @@ def minmax_scale(X, axis=0, eps=1e-12):
     """
     # Write code here
     X=np.array(X)
-    min=np.min(X,axis=axis,keepdims=True)
-    max=np.max(X,axis=axis,keepdims=True)
-    denominator=max-min
-    x=(X-min)/(np.maximum(denominator,eps))
+    min_val=np.min(X,axis=axis,keepdims=True)
+    max_val=np.max(X,axis=axis,keepdims=True)
+    denominator=max_val-min_val
+    x=(X-min_val)/(np.maximum(denominator,eps))
     return x
     pass
