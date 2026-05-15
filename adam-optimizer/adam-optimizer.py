@@ -6,23 +6,17 @@ def adam_step(param, grad, m, v, t, lr=1e-3, beta1=0.9, beta2=0.999, eps=1e-8):
     Return (param_new, m_new, v_new).
     """
     # Write code here
-    param = np.array(param, dtype=float)
-    grad = np.array(grad, dtype=float)
-    m = np.array(m, dtype=float)
-    v = np.array(v, dtype=float)
 
-     # Update biased first moment estimate
-    m = beta1 * m + (1 - beta1) * grad
-    
-    # Update biased second raw moment estimate
-    v = beta2 * v + (1 - beta2) * (grad ** 2)
-    
-    # Bias correction
-    m_hat = m / (1 - beta1 ** t)
-    v_hat = v / (1 - beta2 ** t)
-    
-    # Update parameters
-    param = param - lr * m_hat / (np.sqrt(v_hat) + eps)
-    
-    return param, m, v
+    param=np.array(param)
+    grad=np.array(grad)
+    m=np.array(m)
+    v=np.array(v)
+    m_next=(beta1*m)+((1-beta1)*grad)
+    v_next=(beta2*v)+((1-beta2)*(grad**2))
+    m_corr=m_next/(1-beta1**t)
+    v_corr=v_next/(1-beta2**t)
+
+    param_next=param-lr*(m_corr/(np.sqrt(v_corr)+eps))
+
+    return (param_next,m_next,v_next)
     pass
